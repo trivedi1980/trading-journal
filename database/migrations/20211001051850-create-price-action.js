@@ -9,12 +9,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ticker: {
-        type: Sequelize.STRING,
-        unique: 'ticker_period_unique_constraint'
+        type: Sequelize.STRING
       },
       period: {
-        type: Sequelize.STRING,
-        unique: 'ticker_period_unique_constraint'
+        type: Sequelize.STRING
       },
       data: {
         type: Sequelize.JSON

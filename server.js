@@ -4,6 +4,7 @@ const commons = require('./routes/commons');
 const options = require('./routes/options');
 const srlevels = require('./routes/sr-levels');
 const priceAction = require('./routes/price-action')
+const scheduler = require('./event/scheduler');
 
 const app = express();
 // parse application/json
@@ -19,6 +20,9 @@ db.sequelize.sync({
 app.listen(port, () => {
     console.info('Running server on port: ' + port);
 });
+
+// invoke scheduler
+scheduler.schedule();
 
 // api routes
 app.get('/', (req, resp) => {

@@ -16,8 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   SrLevels.init({
     ticker: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+      allowNull: false
     },
     period: {
       type: DataTypes.STRING,

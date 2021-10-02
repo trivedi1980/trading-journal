@@ -12,6 +12,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      period: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       levels: {
         allowNull: false,
         type: Sequelize.JSON
@@ -26,17 +30,13 @@ module.exports = {
       }
     }, {
       uniqueKeys: {
+          actions_unique: {
+              fields: ['ticker', 'period']
+          }
       }
-    });
-
-    await queryInterface.addConstraint('SrLevels', {
-      fields: ['ticker'],
-      type: 'unique',
-      name: 'ticker_unique_constraint'
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('SrLevels');
-    await queryInterface.removeConstraint('SrLevels', 'ticker_unique_constraint');
   }
 };
