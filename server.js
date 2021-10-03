@@ -1,4 +1,6 @@
 const express = require('express');
+const logger = require("./logger").log4js.getLogger('server');
+const seqLogger = require("./logger").log4js.getLogger('sequelize');
 const db = require('./database/models/index');
 const commons = require('./routes/commons');
 const options = require('./routes/options');
@@ -6,19 +8,24 @@ const srlevels = require('./routes/sr-levels');
 const priceAction = require('./routes/price-action')
 const scheduler = require('./event/scheduler');
 
+// setup express
 const app = express();
-// parse application/json
 app.use(express.json());
 
 const port = 8080;
 
+// sequelize logger function
+const dbLogger = (...msg) => {
+    seqLogger.debug(msg);
+};
+
 db.sequelize.sync({
-    logging: console.log
-    }).then(() => console.info('connected to db...'))
-    .catch((err) => console.error('error occurred while connecting to db: ' + err));
+    logging: dbLogger
+    }).then(() => logger.info('connected to db...'))
+    .catch((err) => logger.error('error occurred while connecting to db: ' + err));
 
 app.listen(port, () => {
-    console.info('Running server on port: ' + port);
+    logger.info('Running server on port: ' + port);
 });
 
 // invoke scheduler

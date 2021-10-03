@@ -1,4 +1,5 @@
 require('dotenv').config({path:".env"})
+const logger = require("../logger").log4js.getLogger('tradyticks/service');
 const axios = require('axios');
 const priceActionUrl = 'https://tradytics.com/get_tradyflow_price_action_data';
 const srLinesUrl = 'https://tradytics.com/get_sr_lines';
