@@ -34,9 +34,13 @@ scheduler.schedule();
 
 // api routes
 app.get('/', (req, resp) => {
-    resp.status(200).send('Journal Service API...');
+    resp.sendFile(__dirname + '/static/login.html');
 });
 
+// expose static content
+app.use('/static', express.static('static'))
+
+// expose APIs for clients
 app.use('/api/commons', commons);
 app.use('/api/options', options);
 app.use('/api/sr-levels', srlevels);
