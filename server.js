@@ -1,3 +1,4 @@
+require('dotenv').config({path:".env"});
 const express = require('express');
 const logger = require("./logger").log4js.getLogger('server');
 const seqLogger = require("./logger").log4js.getLogger('sequelize');
@@ -13,7 +14,7 @@ const users = require('./routes/users');
 const app = express();
 app.use(express.json());
 
-const port = 8080;
+const port = process.env.JOURNAL_SERVICE_PORT;
 
 // sequelize logger function
 const dbLogger = (...msg) => {
@@ -26,7 +27,7 @@ db.sequelize.sync({
     .catch((err) => logger.error('error occurred while connecting to db: ' + err));
 
 app.listen(port, () => {
-    logger.info('Running server on port: ' + port);
+    logger.info(`Running server on port: ${port}`);
 });
 
 // invoke scheduler
