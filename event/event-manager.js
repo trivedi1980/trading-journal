@@ -58,6 +58,10 @@ const saveSrLevels = (data) => {
     const closePrices = data.priceAction.map(p => p.close);
     tradyService.getSrLines(closePrices)
         .then(response => {
+            if (!response.data.data) {
+                logger.error(`failed to get sr levels for ${data.ticker} for period: ${data.period}`);
+                return;
+            }
             var srLevels = {};
             srLevels.ticker = data.ticker;
             srLevels.period = data.period;

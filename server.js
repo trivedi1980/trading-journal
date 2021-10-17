@@ -40,6 +40,11 @@ app.get('/', (req, resp) => {
 // expose static content
 app.use('/static', express.static('static'))
 
+// Login
+app.post("/login", (req, res) => {
+    // our login logic goes here
+});
+
 // expose APIs for clients
 app.use('/api/commons', commons);
 app.use('/api/options', options);

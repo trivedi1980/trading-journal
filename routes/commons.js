@@ -23,7 +23,7 @@ router.route('/')
             .catch(error => resp.status(500).send(error));
     })
     .delete((req, resp) => {
-        crud.destroy(req, resp, modelName)
+        crud.destroy(req.body, modelName)
             .then(objects => resp.status(200).json(objects))
             .catch(error => resp.status(500).send(error));
     });
