@@ -1,6 +1,6 @@
 const tradyService = require('../tradyticks/service');
 const db = require('../database/models/index');
-const logger = require("../logger").log4js.getLogger('event/event-manager');
+const logger = require("../logger").log4js.getLogger('/event/event-manager');
 const EventEmitter = require('events');
 const eventEmitter = new EventEmitter();
 
